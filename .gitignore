@@ -1,0 +1,3 @@
+src/.hist
+src/lib/sys/*
+!src/lib/sys/.gitkeep
