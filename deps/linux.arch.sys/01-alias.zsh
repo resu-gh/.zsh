@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-zhas "pacman" "comm" "fzf" "xargs" "sudo" && {
+_ZF_HAS "pacman" "comm" "fzf" "xargs" "sudo" && {
     xinstall() {
         comm -13 <(pacman -Qq | sort) <(pacman -Slq | sort) |
         fzf -m --preview 'pacman -Si {}' --reverse |
@@ -30,7 +30,7 @@ zhas "pacman" "comm" "fzf" "xargs" "sudo" && {
     alias xpp="xrremove"
 }
 
-zhas "yay" "nix" "sudo" && {
+_ZF_HAS "yay" "nix" "sudo" && {
     gupdate() {
         yay
         sudo nix-channel --update -v 

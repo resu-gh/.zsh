@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-local condadir="$HOME/.miniconda3"
-local condash="$condadir/etc/profile.d/conda.sh"
+local _ZV_CONDA_DIR="$HOME/.miniconda3"
+local _ZV_CONDA_SH="$_ZV_CONDA_DIR/etc/profile.d/conda.sh"
 
-[ -f $condash ] && . $condash
+[[ -f "$_ZV_CONDA_SH" ]] && . $_ZV_CONDA_SH

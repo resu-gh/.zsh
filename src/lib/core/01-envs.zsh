@@ -1,21 +1,33 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 export -U PATH path FPATH fpath MANPATH manpath
 export -UT INFOPATH infopath
 
-zhas "st" && export TERMINAL="st"
-zhas "alacritty" && [[ -z "$TERMINAL" ]] && export TERMINAL="alacritty"
+_ZF_HAS "alacritty" && {
+    export TERMINAL="alacritty"
+}
 
-zhas "nvim" && {
+_ZF_HAS "st" && [[ -z $TERMINAL ]] && {
+    export TERMINAL="st"
+}
+
+_ZF_HAS "nvim" && {
     export VISUAL="nvim"
     export EDITOR="nvim"
 }
 
-zhas "bat" && export PAGER="bat --paging=always -p"
+_ZF_HAS "bat" && {
+    export PAGER="bat"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export BAT_STYLE="plain"
+}
 
-zhas "less" && export LESSHISTFILE="-"
+_ZF_HAS "less" && {
+    export LESS=${LESS:-'-g -i -M -R -S -w -z-4'}
+    export LESSHISTFILE="-"
+}
 
-zhas "nnn" && {
+_ZF_HAS "nnn" && {
     export NNN_OPTS="cedH"
     export NNN_BMS="h:~;c:~/.config;r:/;u:/usr;e:/etc;l:~/.local;"
     export NNN_PLUG="o:fzopen;p:preview-tabbed"
@@ -24,10 +36,10 @@ zhas "nnn" && {
     export NNN_FIFO="/tmp/nnn.fifo"
 }
 
-zhas "go" && {
+_ZF_HAS "go" && {
     export GOPATH="$HOME/.go"
     path+=("$GOPATH/bin")
 }
 
-path+=("$HOME/.local/bin")
+path+=("$XDG_BIN_HOME")
 export PATH

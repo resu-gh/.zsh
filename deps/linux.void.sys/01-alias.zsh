@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-zhas "xbps-query" "xbps-install" "xbps-remove" "sed" "cut" "fzf" "xargs" "vpm" && {
+_ZF_HAS "xbps-query" "xbps-install" "xbps-remove" "sed" "cut" "fzf" "xargs" "vpm" && {
     xinstall() {
         xbps-query -Rs '' |
         sed -e '/\[\*\]/d' |
@@ -37,7 +37,7 @@ zhas "xbps-query" "xbps-install" "xbps-remove" "sed" "cut" "fzf" "xargs" "vpm" &
     alias xpp="xrremove"
 }
 
-zhas "vpm" "vkpurge" "sudo" && {
+_ZF_HAS "vpm" "vkpurge" "sudo" && {
     gupdate() {
         sudo vpm up
         sudo vpm cl

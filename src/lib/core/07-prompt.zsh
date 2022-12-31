@@ -1,13 +1,13 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 local lcms=(
     "%F{245}%1~%f"
     "%F{245}#%f"
     ""
 )
-local rcms=()
+PROMPT="${(j: :)lcms}"
 
-PROMPT=${(j: :)lcms}
-RPROMPT=${(j: :)rcms}
+local rcms=()
+RPROMPT="${(j: :)rcms}"
 
 setopt TRANSIENT_RPROMPT

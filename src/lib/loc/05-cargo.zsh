@@ -1,9 +1,9 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-local cargodir="$HOME/.cargo"
-local cargobin="$cargodir/bin"
+local _ZV_CARGO_DIR="$HOME/.cargo"
+local _ZV_CARGO_BIN="$_ZV_CARGO_DIR/bin"
 
-[ -d $cargobin ] && {
-    path+=("$cargobin")
+[[ -d "$_ZV_CARGO_BIN" ]] && {
+    path+=("$_ZV_CARGO_BIN")
     export PATH
 }

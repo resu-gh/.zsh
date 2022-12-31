@@ -1,6 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-local nixdir="$HOME/.nix-profile"
-local nixhs="$nixdir/etc/profile.d/nix.sh"
+local _ZV_NIX_DIR="$HOME/.nix-profile"
+local _ZV_NIX_SH="$_ZV_NIX_DIR/etc/profile.d/nix.sh"
 
-[ -f $nixhs ] && . $nixhs
+[[ -f "$_ZV_NIX_SH" ]] && . $_ZV_NIX_SH
