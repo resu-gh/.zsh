@@ -29,9 +29,11 @@ _ZF_HAS "nvim" && {
 
 _ZF_HAS "du" "awk" "fzf" "xargs" && {
     fzfed() {
-        du -a . |
-        awk "{print $2}" |
-        fzf --layout=reverse --height 20% |
+        du . -a --exclude .git |
+        tr '\t' ' ' |
+        cut -d' ' -f2 |
+        grep -w '^\.$' --invert-match |
+        fzf -m --layout reverse --preview 'bat --color always {}' |
         xargs -or $EDITOR ;
     }
     alias f="fzfed"

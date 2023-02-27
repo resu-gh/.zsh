@@ -30,13 +30,24 @@ _ZF_HAS "pacman" "comm" "fzf" "xargs" "sudo" && {
     alias xpp="xrremove"
 }
 
-_ZF_HAS "yay" "nix" "sudo" && {
+_ZF_HAS "sudo" && {
     gupdate() {
-        yay
-        sudo nix-channel --update -v 
-        nix-env --upgrade -v
-        nix-collect-garbage --delete-old
-        nix-store --optimize -v
+        _ZF_HAS "yay" && {
+            yes | yay
+            yes | yay -Scc
+        }
+        _ZF_HAS "rustup" && {
+            rustup update
+        }
+        _ZF_HAS "zcomet" && {
+            zcomet update
+        }
+        _ZF_HAS "nix" && {
+            sudo nix-channel --update -v 
+            nix-env --upgrade -v
+            nix-collect-garbage --delete-old
+            nix-store --optimize -v
+        }
     }
     alias gu="gupdate"
 }

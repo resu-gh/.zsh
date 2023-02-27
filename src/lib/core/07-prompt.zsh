@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+local nl=$'\n'
+
 local lcms=(
     "%F{245}%1~%f"
     "%F{245}#%f"
